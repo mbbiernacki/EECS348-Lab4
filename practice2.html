@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Practice 2 - CSS Update Page</title>
+    <style>
+        #dummy-paragraph {
+            border-style: solid;
+            border-color: black;
+            border-width: 3px;
+            padding: 10px;
+            width: 400px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>CSS Update Page</h1>
+
+    <p>On this page, you can change the color of the text and the border of the paragraph below:</p>
+
+    <p id="dummy-paragraph">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec odio vitae lectus luctus cursus.
+    </p>
+
+    <p>Use the color selection tool below to change the color of the text and the border of the paragraph above.</p>
+
+    <p>
+        <label for="text-rgb">Enter RGB color for text (e.g. 255,0,0 for red):</label><br>
+        <input type="text" id="text-rgb" placeholder="e.g. 255,0,0">
+    </p>
+
+    <p>
+        <label for="border-rgb">Enter RGB color for border (e.g. 0,128,0 for green):</label><br>
+        <input type="text" id="border-rgb" placeholder="e.g. 0,128,0">
+    </p>
+
+    <p>Use the slider below to adjust the width of the border (left = smaller, right = larger):</p>
+
+    <p>
+        <label for="border-width-input">Border Width (px):</label>
+        <input type="range" id="border-width-input" min="1" max="20" value="3">
+        <span id="border-width-value">3</span> px
+    </p>
+
+    <button onclick="updateStyles()">Update Style</button>
+
+    <script>
+        const borderWidthSlider = document.getElementById('border-width-input');
+        const borderWidthValue = document.getElementById('border-width-value');
+        const textRGBInput = document.getElementById('text-rgb');
+        const borderRGBInput = document.getElementById('border-rgb');
+        const paragraph = document.getElementById('dummy-paragraph');
+
+        borderWidthSlider.addEventListener('input', () => {
+            borderWidthValue.textContent = borderWidthSlider.value;
+        });
+
+        function updateStyles() {
+            const textRGB = textRGBInput.value.trim();
+            const borderRGB = borderRGBInput.value.trim();
+
+            function isValidRGB(rgb) {
+                const parts = rgb.split(',');
+                return (
+                    parts.length === 3 &&
+                    parts.every(c => {
+                        const num = Number(c);
+                        return !isNaN(num) && num >= 0 && num <= 255;
+                    })
+                );
+            }
+
+            if (!isValidRGB(textRGB) || !isValidRGB(borderRGB)) {
+                alert('Please enter valid RGB values (0–255) in the format: R,G,B');
+                return;
+            }
+
+            const textRGBString = `rgb(${textRGB})`;
+            const borderRGBString = `rgb(${borderRGB})`;
+            const borderWidth = borderWidthSlider.value;
+
+            paragraph.style.color = textRGBString;
+            paragraph.style.borderColor = borderRGBString;
+            paragraph.style.borderWidth = borderWidth + 'px';
+        }
+    </script>
+
+</body>
+</html>

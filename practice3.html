@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Practice 3 - Password Verification</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #90ee90; /* light green accent */
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+            margin-right: 10px;
+        }
+
+        input[type="password"] {
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width: 200px;
+            background-color: #222;
+            color: #fff;
+        }
+
+        input[type="password"]::placeholder {
+            color: #bbb;
+        }
+
+        button {
+            background-color: #708238; /* olive green */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            float: center;
+        }
+
+        button:hover {
+            background-color: #556b2f;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Password Verification Page</h1>
+    <p>This page compares two passwords to make sure that they match (please ensure your passwords are at least 8 characters long).</p>
+
+    <p>
+        <label for="password1">Enter Password:</label>
+        <input type="password" id="password1" placeholder="Password">
+    </p>
+
+    <p>
+        <label for="password2">Confirm Password:</label>
+        <input type="password" id="password2" placeholder="Confirm Password">
+    </p>
+
+    <button onclick="checkPasswords()">Check Passwords</button>
+
+    <p id="result"></p>
+
+    <script>
+        function checkPasswords() {
+            const pass1 = document.getElementById('password1').value;
+            const pass2 = document.getElementById('password2').value;
+            const result = document.getElementById('result');
+
+            if (pass1.length < 8){
+                alert('Passwords must be at least 8 characters long.');
+                result.textContent = '';
+                return;
+            }
+
+            if (pass1 !== pass2){
+                alert('Passwords do not match');
+                result.textContent = '';
+                return;
+            }
+
+            result.textContent = 'Passwords match!';
+            result.style.color = 'lightgreen';
+        }
+    </script>
+</body>
+</html>
