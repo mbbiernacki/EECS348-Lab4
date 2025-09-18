@@ -10,13 +10,11 @@ Both images are published on Docker Hub under my account: [mb6ff](https://hub.do
 
 ## How to Run from Dockerhub
 
-# NOTES: 
 1. Run these commands in Windows PowerShell or a terminal with Docker installed
 2. The Docker images were built on an ARM64 system, which is why the `--platform linux/arm64` flag is required.
  
 ### 1. C Program
 `docker run --rm -it --platform linux/arm64 mb6ff/lab4_lab2cprogram ./program`
-
 
 ### 2. Website
 `docker run --rm -it --platform linux/arm64 -p 8080:80 mb6ff/lab4_image`
